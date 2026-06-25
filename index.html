@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gurunisa Prabha Prakash Chaitanya | Illuminating Lives Through Wisdom & Service</title>
+<meta name="description" content="Gurunisa Prabha Prakash Chaitanya — a spiritual organization illuminating lives through wisdom, service and spiritual awareness. Discover teachings, events, daily wisdom and guidance." />
+<meta name="keywords" content="spirituality, Jain, meditation, wisdom, teachings, Chaitanyashriji, spiritual guidance, daily wisdom, Chaturmas" />
+<meta name="author" content="Gurunisa Prabha Prakash Chaitanya" />
+<meta name="theme-color" content="#b8860b" />
+
+<!-- Open Graph / SEO -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Gurunisa Prabha Prakash Chaitanya" />
+<meta property="og:description" content="Illuminating Lives Through Wisdom, Service & Spiritual Awareness." />
+<meta property="og:image" content="assets/logo.svg" />
+<link rel="canonical" href="https://example.org/" />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Gurunisa Prabha Prakash Chaitanya",
+  "description": "A spiritual organization illuminating lives through wisdom, service and spiritual awareness.",
+  "url": "https://example.org/",
+  "logo": "assets/logo.svg"
+}
+</script>
+</head>
+<body>
+
+<!-- Decorative background -->
+<div class="bg-rays" aria-hidden="true"></div>
+<div class="bg-lotus" aria-hidden="true"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="brand">
+      <img src="assets/logo.svg" alt="Gurunisa Prabha Prakash Chaitanya logo" class="brand-logo" />
+      <span class="brand-text">
+        <strong>Gurunisa Prabha Prakash</strong>
+        <em>Chaitanya</em>
+      </span>
+    </a>
+    <nav class="main-nav" id="nav">
+      <a href="#about">About</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#teachings">Teachings</a>
+      <a href="#wisdom">Daily Wisdom</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#testimonials">Voices</a>
+      <a href="#contact">Contact</a>
+      <a href="admin.html" class="nav-admin">Admin</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content reveal">
+    <img src="assets/logo.svg" alt="" class="hero-logo" aria-hidden="true" />
+    <p class="hero-eyebrow">In Saanidhya of Jinshasan Prabhavika</p>
+    <h1 class="hero-title">Illuminating Lives Through<br><span>Wisdom, Service &amp; Spiritual Awareness</span></h1>
+    <p class="hero-sub">A sacred journey toward peace, purpose and positive living — guided by timeless wisdom and compassionate service.</p>
+    <div class="hero-actions">
+      <a href="#schedule" class="btn btn-primary">Upcoming Events</a>
+      <a href="#about" class="btn btn-ghost">Meet Our Gurus</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><span></span></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">About Us</span>
+      <h2>Our Spiritual Guides</h2>
+      <p class="lead">Four luminous guides walk with us — sharing teachings rooted in compassion, discipline and inner awakening, leading every seeker toward a life of meaning.</p>
+    </div>
+    <div class="guru-grid" id="guruGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section class="section section-alt" id="schedule">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Upcoming Schedule</span>
+      <h2>Events for the Coming Months</h2>
+      <p class="lead">Join us in person for discourses, meditation sittings and community service. Reserve your place and find your way with one tap.</p>
+    </div>
+    <div class="event-grid" id="eventGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ TEACHINGS ============ -->
+<section class="section" id="teachings">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Teachings &amp; Wisdom</span>
+      <h2>Explore the Path</h2>
+      <p class="lead">Articles and videos across the dimensions of a meaningful life.</p>
+    </div>
+    <div class="topic-chips" id="topicChips"></div>
+    <div class="teaching-grid" id="teachingGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ DAILY WISDOM ============ -->
+<section class="section daily-wisdom" id="wisdom">
+  <div class="container reveal">
+    <span class="kicker centered">Daily Wisdom</span>
+    <blockquote id="dailyQuote" class="quote">
+      <p id="quoteText">“The mind is everything. What you think, you become.”</p>
+      <cite id="quoteAuthor">— Lord Mahavira</cite>
+    </blockquote>
+    <p class="quote-date" id="quoteDate"></p>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section section-alt" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Event Gallery</span>
+      <h2>Moments of Grace</h2>
+      <p class="lead">Glimpses from our gatherings, discourses and spiritual programs.</p>
+    </div>
+    <div class="gallery-grid" id="galleryGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section" id="testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Voices of Our Community</span>
+      <h2>Testimonials</h2>
+    </div>
+    <div class="testi-grid" id="testiGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section section-alt" id="contact">
+  <div class="container contact-wrap">
+    <div class="contact-info reveal">
+      <span class="kicker">Get in Touch</span>
+      <h2>Connect With Us</h2>
+      <p class="lead">We would love to hear from you. Reach out for guidance, event details or to join our spiritual family.</p>
+      <ul class="contact-links">
+        <li><a href="https://wa.me/910000000000" target="_blank" rel="noopener">💬 WhatsApp</a></li>
+        <li><a href="https://youtube.com/" target="_blank" rel="noopener">▶️ YouTube</a></li>
+        <li><a href="https://instagram.com/" target="_blank" rel="noopener">📷 Instagram</a></li>
+        <li><a href="https://facebook.com/" target="_blank" rel="noopener">👍 Facebook</a></li>
+        <li><a href="mailto:contact@gppchaitanya.org">✉️ contact@gppchaitanya.org</a></li>
+      </ul>
+    </div>
+    <form class="contact-form reveal" id="contactForm">
+      <h3>Send an Inquiry</h3>
+      <label>Name<input type="text" name="name" required /></label>
+      <label>Email<input type="email" name="email" required /></label>
+      <label>Phone<input type="tel" name="phone" /></label>
+      <label>Message<textarea name="message" rows="4" required></textarea></label>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+      <p class="form-note" id="formNote" hidden>🙏 Thank you — your message has been noted.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo.svg" alt="" class="footer-logo" />
+      <p><strong>Gurunisa Prabha Prakash Chaitanya</strong><br>Illuminating lives through wisdom &amp; service.</p>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Gurunisa Prabha Prakash Chaitanya. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
