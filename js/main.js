@@ -33,7 +33,7 @@
     const url = "guru.html?id=" + i;
     gg.appendChild(el(`
     <article class="guru-card reveal">
-      <a class="guru-photo" href="${url}" aria-label="View ${g.name}">${g.photo ? `<img src="${g.photo}" alt="${g.name}">` : (g.initial || g.name[0])}</a>
+      <a class="guru-photo" href="${url}" aria-label="View ${g.name}">${g.photo ? `<img src="${g.photo}" alt="${g.name}" onerror="this.parentNode.textContent='${g.initial || g.name[0]}'">` : (g.initial || g.name[0])}</a>
       <div class="guru-body">
         <h3><a class="guru-name-link" href="${url}">${g.name}</a></h3>
         <div class="guru-role">${g.role}</div>
@@ -134,12 +134,12 @@
   };
   const S = data.social || {};
   const cl = $("#contactLinks");
-  const addLink = (href, label) => { if (href) cl.appendChild(el(`<li><a href="${href}" ${href.startsWith("mailto") ? "" : 'target="_blank" rel="noopener"'}>${label}</a></li>`)); };
-  addLink(S.whatsapp, "💬 WhatsApp");
-  addLink(S.youtube, "▶️ YouTube");
-  addLink(S.instagram, "📷 Instagram");
-  addLink(S.facebook, "👍 Facebook");
-  if (S.email) addLink("mailto:" + S.email, "✉️ " + S.email);
+  const addLink = (href, key, label) => { if (href) cl.appendChild(el(`<li><a href="${href}" ${href.startsWith("mailto") ? "" : 'target="_blank" rel="noopener"'}><span class="ci">${ICONS[key]}</span>${label}</a></li>`)); };
+  addLink(S.whatsapp, "whatsapp", "WhatsApp");
+  addLink(S.youtube, "youtube", "YouTube");
+  addLink(S.instagram, "instagram", "Instagram");
+  addLink(S.facebook, "facebook", "Facebook");
+  if (S.email) addLink("mailto:" + S.email, "email", S.email);
 
   const socialDefs = [
     ["youtube", S.youtube], ["instagram", S.instagram], ["whatsapp", S.whatsapp],

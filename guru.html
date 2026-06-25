@@ -84,7 +84,7 @@
   const g = gurus[id] || gurus[0];
   document.title = g.name + " — Gurunisa Prabha Prakash Chaitanya";
   const photo = document.getElementById("gpPhoto");
-  if (g.photo) photo.innerHTML = '<img src="'+g.photo+'" alt="'+g.name+'">';
+  if (g.photo) photo.innerHTML = '<img src="'+g.photo+'" alt="'+g.name+'" onerror="this.parentNode.textContent=\''+(g.initial || g.name[0])+'\'">';
   else photo.textContent = g.initial || g.name[0];
   document.getElementById("gpName").textContent = g.name;
   document.getElementById("gpRole").textContent = g.role || "";

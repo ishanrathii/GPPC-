@@ -18,7 +18,7 @@ window.GPPC_DEFAULTS = {
       name: "Gurunisa Prabha Prakash Chaitanya",
       role: "Jinshasan Prabhavika",
       initial: "G",
-      photo: "",
+      photo: "assets/gurus/chaitanyashreeji.jpg",
       bio: "A radiant spiritual guide whose discourses awaken inner clarity. Through compassion, austerity and discipline, she leads seekers on the path of right faith, right knowledge and right conduct.",
       teaching: "“True wealth is the peace within an awakened heart.”",
       journey: "Revered as Jinshasan Prabhavika, Gurunisa Prabha Prakash Chaitanya has dedicated her life to the upliftment of souls through Dharma Jagran. Her Vihar Yatra and Chaturmas inspire thousands to embrace a life of devotion, non-violence and selfless service. Detailed biography and spiritual journey will be shared here soon."
@@ -27,7 +27,7 @@ window.GPPC_DEFAULTS = {
       name: "Dr. P. Pu. Jigyasaji M.S.",
       role: "Spiritual Guide",
       initial: "J",
-      photo: "",
+      photo: "assets/gurus/jigyasaji.jpg",
       bio: "A learned scholar-sadhvi devoted to the study of sacred scriptures, illuminating the philosophy of non-violence and mindful living for seekers of every age.",
       teaching: "“Knowledge becomes light only when it is lived.”",
       journey: "Dr. P. Pu. Jigyasaji M.S. combines deep scriptural scholarship with heartfelt guidance. Full biography and spiritual journey will be added here soon."
@@ -36,7 +36,7 @@ window.GPPC_DEFAULTS = {
       name: "P. Pu. Subodhiji M.S.",
       role: "Spiritual Guide",
       initial: "S",
-      photo: "",
+      photo: "assets/gurus/subodhiji.jpg",
       bio: "A serene guide whose gentle wisdom and devotion inspire seekers toward discipline, humility and inner awakening.",
       teaching: "“Serve all beings as you would serve the divine.”",
       journey: "P. Pu. Subodhiji M.S. walks the path of compassion and service. Full biography and spiritual journey will be added here soon."
@@ -45,7 +45,7 @@ window.GPPC_DEFAULTS = {
       name: "P. Pu. Nirmitiprabhaji M.S.",
       role: "Spiritual Guide",
       initial: "N",
-      photo: "",
+      photo: "assets/gurus/nirmitiprabhaji.jpg",
       bio: "A guide of stillness and grace, devoted to meditation, breath and the cultivation of deep inner silence.",
       teaching: "“In silence, the soul remembers its own light.”",
       journey: "P. Pu. Nirmitiprabhaji M.S. inspires seekers through the practice of meditation and devotion. Full biography and spiritual journey will be added here soon."
