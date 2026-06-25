@@ -56,7 +56,7 @@
     <button data-tab="teachings">Teachings</button>
     <button data-tab="quotes">Daily Quotes</button>
     <button data-tab="gallery">Gallery</button>
-    <button data-tab="testimonials">Testimonials</button>
+    <button data-tab="social">Social Links</button>
     <button data-tab="inquiries">Inquiries</button>
   </div>
 
@@ -65,7 +65,7 @@
   <div class="panel" id="panel-teachings"></div>
   <div class="panel" id="panel-quotes"></div>
   <div class="panel" id="panel-gallery"></div>
-  <div class="panel" id="panel-testimonials"></div>
+  <div class="panel" id="panel-social"></div>
   <div class="panel" id="panel-inquiries"></div>
 
   <div class="save-bar">
@@ -88,18 +88,18 @@ const state = {
   teachings: load("teachings", D.teachings),
   quotes: load("quotes", D.quotes),
   gallery: load("gallery", D.gallery),
-  testimonials: load("testimonials", D.testimonials)
+  social: load("social", D.social)
 };
 
 // field schema for each collection
 const schema = {
-  gurus: [["name","Name"],["role","Role"],["initial","Initial"],["bio","Biography","area"],["teaching","Teaching Quote"],["photo","Photo URL"]],
-  events: [["title","Title"],["date","Date","date"],["time","Time"],["location","Location"],["maps","Maps Query"],["desc","Description","area"]],
+  gurus: [["name","Name"],["role","Role"],["initial","Initial"],["photo","Photo URL"],["bio","Short Biography","area"],["teaching","Teaching Quote"],["journey","Spiritual Journey (detail page)","area"]],
+  events: [["title","Title / Place"],["date","Date","date"],["dateText","Date Label (e.g. 27–29 June 2026)"],["location","Location"],["maps","Maps Query"],["desc","Description","area"]],
   teachings: [["title","Title"],["topic","Topic"],["type","Type (Article/Video)"],["icon","Icon Emoji"],["excerpt","Excerpt","area"],["link","Link URL"],["image","Image URL"]],
   quotes: [["text","Quote","area"],["author","Author"]],
-  gallery: [["cap","Caption"],["icon","Icon Emoji"],["image","Image URL"],["tall","Tall (true/false)"],["video","Is Video (true/false)"]],
-  testimonials: [["text","Testimonial","area"],["name","Name"],["place","Place"]]
+  gallery: [["cap","Caption"],["icon","Icon Emoji"],["image","Image URL"],["tall","Tall (true/false)"],["video","Is Video (true/false)"]]
 };
+const socialSchema = [["youtube","YouTube URL"],["instagram","Instagram URL"],["whatsapp","WhatsApp URL"],["facebook","Facebook URL"],["email","Email"]];
 
 function field(coll, idx, key, lbl, t){
   const val = state[coll][idx][key] ?? "";
@@ -117,7 +117,13 @@ function render(coll){
       (inq.length?`<button class="btn btn-del" onclick="localStorage.removeItem('GPPC_inquiries');render('inquiries')">Clear inquiries</button>`:"");
     return;
   }
-  const titles={gurus:"Spiritual Guides",events:"Events",teachings:"Teachings & Wisdom",quotes:"Daily Quotes",gallery:"Gallery Items",testimonials:"Testimonials"};
+  if(coll==="social"){
+    p.innerHTML = `<h2>Social & Contact Links</h2><div class="card"><div class="row">`+
+      socialSchema.map(f=>`<label>${f[1]}<input type="text" data-social="${f[0]}" value="${String(state.social[f[0]]??'').replace(/"/g,'&quot;')}"></label>`).join("")+
+      `</div></div>`;
+    return;
+  }
+  const titles={gurus:"Spiritual Guides",events:"Events (Chaturmas Schedule)",teachings:"Teachings & Wisdom",quotes:"Daily Quotes",gallery:"Gallery Items"};
   let html = `<h2>${titles[coll]}</h2>`;
   state[coll].forEach((_,i)=>{
     html += `<div class="card"><div class="row">`+
@@ -139,7 +145,9 @@ document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",
 
 // input binding
 document.addEventListener("input",e=>{
-  const t=e.target; if(!t.dataset.c) return;
+  const t=e.target;
+  if(t.dataset.social!==undefined){ state.social[t.dataset.social]=t.value; return; }
+  if(!t.dataset.c) return;
   let v=t.value;
   if(v==="true")v=true; else if(v==="false")v=false;
   state[t.dataset.c][t.dataset.i][t.dataset.k]=v;
@@ -166,7 +174,7 @@ document.getElementById("exportBtn").addEventListener("click",()=>{
 
 document.getElementById("resetAll").addEventListener("click",()=>{
   if(confirm("Reset all content to defaults? This clears your saved changes.")){
-    ["gurus","events","teachings","quotes","gallery","testimonials"].forEach(k=>localStorage.removeItem("GPPC_"+k));
+    ["gurus","events","teachings","quotes","gallery","social"].forEach(k=>localStorage.removeItem("GPPC_"+k));
     location.reload();
   }
 });

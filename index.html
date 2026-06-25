@@ -55,7 +55,6 @@
       <a href="#teachings">Teachings</a>
       <a href="#wisdom">Daily Wisdom</a>
       <a href="#gallery">Gallery</a>
-      <a href="#testimonials">Voices</a>
       <a href="#contact">Contact</a>
       <a href="admin.html" class="nav-admin">Admin</a>
     </nav>
@@ -142,17 +141,6 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="section" id="testimonials">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">Voices of Our Community</span>
-      <h2>Testimonials</h2>
-    </div>
-    <div class="testi-grid" id="testiGrid"><!-- injected by JS --></div>
-  </div>
-</section>
-
 <!-- ============ CONTACT ============ -->
 <section class="section section-alt" id="contact">
   <div class="container contact-wrap">
@@ -160,13 +148,8 @@
       <span class="kicker">Get in Touch</span>
       <h2>Connect With Us</h2>
       <p class="lead">We would love to hear from you. Reach out for guidance, event details or to join our spiritual family.</p>
-      <ul class="contact-links">
-        <li><a href="https://wa.me/910000000000" target="_blank" rel="noopener">💬 WhatsApp</a></li>
-        <li><a href="https://youtube.com/" target="_blank" rel="noopener">▶️ YouTube</a></li>
-        <li><a href="https://instagram.com/" target="_blank" rel="noopener">📷 Instagram</a></li>
-        <li><a href="https://facebook.com/" target="_blank" rel="noopener">👍 Facebook</a></li>
-        <li><a href="mailto:contact@gppchaitanya.org">✉️ contact@gppchaitanya.org</a></li>
-      </ul>
+      <ul class="contact-links" id="contactLinks"><!-- injected by JS --></ul>
+      <div class="social-row" id="socialRow"><!-- brand icons injected by JS --></div>
     </div>
     <form class="contact-form reveal" id="contactForm">
       <h3>Send an Inquiry</h3>
@@ -187,6 +170,7 @@
       <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="" class="footer-logo" />
       <p><strong>Gurunisa Prabha Prakash Chaitanya</strong><br>Illuminating lives through wisdom &amp; service.</p>
     </div>
+    <div class="footer-social" id="footerSocial"><!-- brand icons injected by JS --></div>
     <p class="footer-copy">© <span id="year"></span> Gurunisa Prabha Prakash Chaitanya. All rights reserved.</p>
   </div>
 </footer>

@@ -11,7 +11,7 @@
     teachings: get("teachings", D.teachings),
     quotes: get("quotes", D.quotes),
     gallery: get("gallery", D.gallery),
-    testimonials: get("testimonials", D.testimonials)
+    social: get("social", D.social)
   };
 
   const $ = (s) => document.querySelector(s);
@@ -29,16 +29,20 @@
 
   /* ---- gurus ---- */
   const gg = $("#guruGrid");
-  data.gurus.forEach(g => gg.appendChild(el(`
+  data.gurus.forEach((g, i) => {
+    const url = "guru.html?id=" + i;
+    gg.appendChild(el(`
     <article class="guru-card reveal">
-      <div class="guru-photo">${g.photo ? `<img src="${g.photo}" alt="${g.name}">` : (g.initial || g.name[0])}</div>
+      <a class="guru-photo" href="${url}" aria-label="View ${g.name}">${g.photo ? `<img src="${g.photo}" alt="${g.name}">` : (g.initial || g.name[0])}</a>
       <div class="guru-body">
-        <h3>${g.name}</h3>
+        <h3><a class="guru-name-link" href="${url}">${g.name}</a></h3>
         <div class="guru-role">${g.role}</div>
         <p>${g.bio}</p>
         <p class="guru-teaching">${g.teaching}</p>
+        <a class="guru-more" href="${url}">View Profile &amp; Journey →</a>
       </div>
-    </article>`)));
+    </article>`));
+  });
 
   /* ---- events (next two months, sorted) ---- */
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -61,7 +65,7 @@
           <h3>${e.title}</h3>
         </div>
         <div class="event-body">
-          <div class="event-meta">🕑 ${e.time || ""} &nbsp;•&nbsp; 📍 ${e.location}</div>
+          <div class="event-meta">📅 ${e.dateText || e.time || ""} &nbsp;•&nbsp; 📍 ${e.location}</div>
           <p>${e.desc}</p>
           <div class="event-actions">
             <a class="btn btn-primary btn-small" href="${maps}" target="_blank" rel="noopener">Register</a>
@@ -120,16 +124,36 @@
       </div>`));
   });
 
-  /* ---- testimonials ---- */
-  const ttg = $("#testiGrid");
-  data.testimonials.forEach(t => ttg.appendChild(el(`
-    <article class="testi-card reveal">
-      <p>${t.text}</p>
-      <div class="testi-who">
-        <div class="testi-avatar">${(t.name || "•")[0]}</div>
-        <div><strong>${t.name}</strong><span>${t.place || ""}</span></div>
-      </div>
-    </article>`)));
+  /* ---- contact links + social brand icons ---- */
+  const ICONS = {
+    youtube: '<svg viewBox="0 0 24 24"><path fill="#FF0000" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8Z"/><path fill="#fff" d="M9.6 15.6V8.4l6.2 3.6-6.2 3.6Z"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24"><defs><radialGradient id="ig" cx="30%" cy="105%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#ig)"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="17" cy="7" r="1.3" fill="#fff"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Z"/><path fill="#fff" d="M16.8 14.3c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1a7.3 7.3 0 0 1-3.6-3.2c-.3-.5.3-.5.7-1.5.1-.2 0-.4 0-.5l-.9-2c-.2-.5-.4-.5-.6-.5h-.5a1 1 0 0 0-.7.3c-.2.3-.9.9-.9 2.2s.9 2.6 1.1 2.8c.1.2 1.9 2.9 4.6 4 .6.3 1.1.5 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3Z"/></svg>',
+    facebook: '<svg viewBox="0 0 24 24"><path fill="#1877F2" d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-2.9h2.4V9.8c0-2.4 1.4-3.7 3.6-3.7 1 0 2.1.2 2.1.2v2.3h-1.2c-1.2 0-1.5.7-1.5 1.5v1.8h2.6l-.4 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>',
+    email: '<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3" fill="#b8860b"/><path fill="none" stroke="#fff" stroke-width="1.8" d="m3 6 9 6 9-6"/></svg>'
+  };
+  const S = data.social || {};
+  const cl = $("#contactLinks");
+  const addLink = (href, label) => { if (href) cl.appendChild(el(`<li><a href="${href}" ${href.startsWith("mailto") ? "" : 'target="_blank" rel="noopener"'}>${label}</a></li>`)); };
+  addLink(S.whatsapp, "💬 WhatsApp");
+  addLink(S.youtube, "▶️ YouTube");
+  addLink(S.instagram, "📷 Instagram");
+  addLink(S.facebook, "👍 Facebook");
+  if (S.email) addLink("mailto:" + S.email, "✉️ " + S.email);
+
+  const socialDefs = [
+    ["youtube", S.youtube], ["instagram", S.instagram], ["whatsapp", S.whatsapp],
+    ["facebook", S.facebook], ["email", S.email ? "mailto:" + S.email : ""]
+  ];
+  const renderSocial = (container) => {
+    if (!container) return;
+    socialDefs.forEach(([k, href]) => {
+      if (!href) return;
+      container.appendChild(el(`<a class="social-icon" href="${href}" ${href.startsWith("mailto") ? "" : 'target="_blank" rel="noopener"'} aria-label="${k}" title="${k}">${ICONS[k]}</a>`));
+    });
+  };
+  renderSocial($("#socialRow"));
+  renderSocial($("#footerSocial"));
 
   /* ---- contact form ---- */
   const form = $("#contactForm");

@@ -110,6 +110,11 @@ a{color:inherit;text-decoration:none}
 .guru-photo img{width:100%;height:100%;object-fit:cover}
 .guru-body{padding:1.5rem}
 .guru-body h3{font-size:1.5rem;color:var(--maroon)}
+.guru-name-link{transition:.25s}
+.guru-name-link:hover{color:var(--saffron-deep)}
+.guru-photo{cursor:pointer}
+.guru-more{display:inline-block;margin-top:1rem;color:var(--saffron-deep);font-size:.85rem;font-weight:500;font-family:'Poppins'}
+.guru-more:hover{letter-spacing:.4px}
 .guru-role{font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--saffron-deep);margin:.2rem 0 .8rem}
 .guru-body p{font-size:.92rem;color:var(--ink-soft)}
 .guru-teaching{margin-top:.9rem;font-style:italic;color:var(--gold);border-left:3px solid var(--gold-light);padding-left:.8rem;font-size:.9rem}
@@ -186,6 +191,16 @@ a{color:inherit;text-decoration:none}
 .contact-form input,.contact-form textarea{width:100%;margin-top:.35rem;padding:.75rem .9rem;border:1px solid var(--cream-deep);border-radius:10px;font-family:'Poppins';font-size:.92rem;background:#fff}
 .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--saffron)}
 .form-note{color:var(--saffron-deep);margin-top:.8rem;font-weight:500}
+
+/* social brand icons */
+.social-row{display:flex;gap:.8rem;margin-top:1.6rem;flex-wrap:wrap}
+.social-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--ivory);
+  box-shadow:var(--shadow);border:1px solid var(--cream-deep);transition:.3s}
+.social-icon:hover{transform:translateY(-5px) scale(1.06)}
+.social-icon svg{width:26px;height:26px}
+.footer-social{display:flex;gap:.7rem;justify-content:center}
+.footer-social .social-icon{width:44px;height:44px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18)}
+.footer-social .social-icon svg{width:23px;height:23px}
 
 /* footer */
 .site-footer{background:linear-gradient(180deg,#4a1606,#2c0d04);color:#f7eeda;padding:3rem 0 2rem}

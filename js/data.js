@@ -5,70 +5,74 @@
    ============================================================ */
 window.GPPC_DEFAULTS = {
 
+  social: {
+    youtube: "https://youtube.com/@gurunisaprabhaprakash1260",
+    instagram: "https://www.instagram.com/gurunisaprabhaprakash",
+    whatsapp: "https://wa.me/919423028177",
+    facebook: "",
+    email: "contact@gppchaitanya.org"
+  },
+
   gurus: [
     {
-      name: "Shri Chaitanyashriji M.Sa",
+      name: "Gurunisa Prabha Prakash Chaitanya",
       role: "Jinshasan Prabhavika",
-      initial: "C",
-      bio: "A radiant spiritual guide whose discourses awaken inner clarity. Through compassion and discipline she leads seekers toward right faith, right knowledge and right conduct.",
-      teaching: "“True wealth is the peace within an awakened heart.”"
+      initial: "G",
+      photo: "",
+      bio: "A radiant spiritual guide whose discourses awaken inner clarity. Through compassion, austerity and discipline, she leads seekers on the path of right faith, right knowledge and right conduct.",
+      teaching: "“True wealth is the peace within an awakened heart.”",
+      journey: "Revered as Jinshasan Prabhavika, Gurunisa Prabha Prakash Chaitanya has dedicated her life to the upliftment of souls through Dharma Jagran. Her Vihar Yatra and Chaturmas inspire thousands to embrace a life of devotion, non-violence and selfless service. Detailed biography and spiritual journey will be shared here soon."
     },
     {
-      name: "Sadhviji Pragya Prabha",
-      role: "Guide of Wisdom",
-      initial: "P",
-      bio: "Devoted to the study of sacred scriptures, she illuminates the philosophy of non-violence and mindful living for a new generation of seekers.",
-      teaching: "“Knowledge becomes light only when lived.”"
+      name: "Dr. P. Pu. Jigyasaji M.S.",
+      role: "Spiritual Guide",
+      initial: "J",
+      photo: "",
+      bio: "A learned scholar-sadhvi devoted to the study of sacred scriptures, illuminating the philosophy of non-violence and mindful living for seekers of every age.",
+      teaching: "“Knowledge becomes light only when it is lived.”",
+      journey: "Dr. P. Pu. Jigyasaji M.S. combines deep scriptural scholarship with heartfelt guidance. Full biography and spiritual journey will be added here soon."
     },
     {
-      name: "Sadhviji Karuna Jyoti",
-      role: "Guide of Service",
-      initial: "K",
-      bio: "Her life is an offering of selfless service. She inspires communities to serve the needy and to find divinity in compassion.",
-      teaching: "“Serve all beings as you would serve the divine.”"
-    },
-    {
-      name: "Sadhviji Shanti Dhara",
-      role: "Guide of Meditation",
+      name: "P. Pu. Subodhiji M.S.",
+      role: "Spiritual Guide",
       initial: "S",
-      bio: "A master of stillness, she teaches the art of meditation and breath, guiding seekers from restlessness into deep inner silence.",
-      teaching: "“In silence, the soul remembers its own light.”"
+      photo: "",
+      bio: "A serene guide whose gentle wisdom and devotion inspire seekers toward discipline, humility and inner awakening.",
+      teaching: "“Serve all beings as you would serve the divine.”",
+      journey: "P. Pu. Subodhiji M.S. walks the path of compassion and service. Full biography and spiritual journey will be added here soon."
+    },
+    {
+      name: "P. Pu. Nirmitiprabhaji M.S.",
+      role: "Spiritual Guide",
+      initial: "N",
+      photo: "",
+      bio: "A guide of stillness and grace, devoted to meditation, breath and the cultivation of deep inner silence.",
+      teaching: "“In silence, the soul remembers its own light.”",
+      journey: "P. Pu. Nirmitiprabhaji M.S. inspires seekers through the practice of meditation and devotion. Full biography and spiritual journey will be added here soon."
     }
   ],
 
+  /* Chaturmas 2026 — Dharma Jagran Vihar Yatra
+     Shri Vardhman Shvetambar Sthanakvasi Jain Shravak Sangh,
+     Mahavir Bhavan, Chhatrapati Sambhajinagar */
   events: [
-    {
-      title: "Pravachan: The Art of Right Living",
-      date: "2026-07-05",
-      time: "6:30 PM",
-      location: "Aadi Thana Sthanak, Sojat",
-      desc: "An enlightening discourse on transforming everyday life through awareness, ethics and devotion.",
-      maps: "Aadi+Thana+Sojat"
-    },
-    {
-      title: "Chaturmas Mangal Pravesh",
-      date: "2026-07-18",
-      time: "8:00 AM",
-      location: "Utkarsh Dharma Sthal",
-      desc: "Grand ceremonial commencement of the holy four-month spiritual retreat with community celebration.",
-      maps: "Sojat+Rajasthan"
-    },
-    {
-      title: "Youth Spiritual Camp",
-      date: "2026-08-02",
-      time: "9:00 AM",
-      location: "Community Hall, Pali",
-      desc: "A vibrant day for young seekers — meditation, value workshops and inspiring guidance for modern life.",
-      maps: "Pali+Rajasthan"
-    },
-    {
-      title: "Meditation & Silence Retreat",
-      date: "2026-08-24",
-      time: "5:30 AM",
-      location: "Shanti Dhyan Kendra",
-      desc: "A serene morning retreat dedicated to breath, stillness and the practice of inner silence.",
-      maps: "Sojat+City"
-    }
+    {title:"Guru Ganeshnagar → Chhavni",        date:"2026-06-25", dateText:"25 June 2026",            location:"Chhatrapati Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Vihar Yatra from Guru Ganeshnagar to Chhavni."},
+    {title:"Chhavni → Pushpnagari",              date:"2026-06-26", dateText:"26 June 2026",            location:"Pushpnagari, Sambhajinagar", maps:"Pushpnagari+Chhatrapati+Sambhajinagar", desc:"Vihar from Chhavni to Pushpnagari."},
+    {title:"Pushpnagari → 50 Green",             date:"2026-06-27", dateText:"27–29 June 2026",         location:"50 Green, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Three-day stay — Pushpnagari to 50 Green."},
+    {title:"May Home",                           date:"2026-06-30", dateText:"30 June – 1 July 2026",   location:"May Home, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Vihar and stay at May Home."},
+    {title:"Vedantnagar – Bansilalnagar",        date:"2026-07-02", dateText:"2–4 July 2026",           location:"Vedantnagar, Sambhajinagar", maps:"Vedantnagar+Chhatrapati+Sambhajinagar", desc:"Stay at Vedantnagar – Bansilalnagar."},
+    {title:"Dakshin Madhya",                     date:"2026-07-05", dateText:"5–7 July 2026",           location:"Dakshin Madhya, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Three-day stay at Dakshin Madhya."},
+    {title:"Pannalalnagar",                      date:"2026-07-08", dateText:"8 July 2026",             location:"Pannalalnagar, Sambhajinagar", maps:"Pannalalnagar+Chhatrapati+Sambhajinagar", desc:"Vihar to Pannalalnagar."},
+    {title:"Vardhman Residency",                 date:"2026-07-09", dateText:"9–10 July 2026",          location:"Vardhman Residency, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Stay at Vardhman Residency."},
+    {title:"Pundliknagar",                       date:"2026-07-11", dateText:"11–12 July 2026",         location:"Pundliknagar, Sambhajinagar", maps:"Pundliknagar+Chhatrapati+Sambhajinagar", desc:"Stay at Pundliknagar."},
+    {title:"Ahimsanagar",                        date:"2026-07-13", dateText:"13 July 2026",            location:"Ahimsanagar, Sambhajinagar", maps:"Ahimsanagar+Chhatrapati+Sambhajinagar", desc:"Vihar to Ahimsanagar."},
+    {title:"CIDCO Ahimsa Bhavan",                date:"2026-07-14", dateText:"14–15 July 2026",         location:"CIDCO Ahimsa Bhavan, Sambhajinagar", maps:"CIDCO+Chhatrapati+Sambhajinagar", desc:"Stay at CIDCO Ahimsa Bhavan."},
+    {title:"Blue Bell Society",                  date:"2026-07-16", dateText:"16 July 2026",            location:"Blue Bell Society, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Vihar to Blue Bell Society."},
+    {title:"HUDCO Sadhana Bhavan",               date:"2026-07-17", dateText:"17–18 July 2026",         location:"HUDCO Sadhana Bhavan, Sambhajinagar", maps:"HUDCO+Chhatrapati+Sambhajinagar", desc:"Stay at HUDCO Sadhana Bhavan."},
+    {title:"Guru Ganeshnagar",                   date:"2026-07-19", dateText:"19 July 2026",            location:"Guru Ganeshnagar, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Vihar to Guru Ganeshnagar."},
+    {title:"Programme to be announced",          date:"2026-07-20", dateText:"20–24 July 2026",         location:"Chhatrapati Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Details will be shared in due course."},
+    {title:"Sajan Agency",                       date:"2026-07-25", dateText:"25 July 2026",            location:"Sajan Agency, Sambhajinagar", maps:"Chhatrapati+Sambhajinagar", desc:"Vihar to Sajan Agency."},
+    {title:"Chaturmas Grand Mangal Pravesh",     date:"2026-07-26", dateText:"26 July 2026",            location:"Mahavir Bhavan, Chhatrapati Sambhajinagar", maps:"Mahavir+Bhavan+Chhatrapati+Sambhajinagar", desc:"Grand ceremonial Chaturmasik Mangal Pravesh."}
   ],
 
   teachings: [
@@ -98,15 +102,8 @@ window.GPPC_DEFAULTS = {
     {icon:"🙏", cap:"Community Seva"},
     {icon:"🌸", cap:"Chaturmas Celebration", tall:true},
     {icon:"🧘", cap:"Meditation Camp"},
-    {icon:"🎉", cap:"Youth Program", video:true},
+    {icon:"🎉", cap:"Dharma Jagran Yatra", video:true},
     {icon:"🕉️", cap:"Bhakti Sandhya"},
-    {icon:"✨", cap:"Pratishtha Mahotsav"}
-  ],
-
-  testimonials: [
-    {text:"The discourses transformed how I see life. I found peace I had been searching for years.", name:"Anita Jain", place:"Mumbai"},
-    {text:"The youth camp gave my son confidence and values. Truly a blessing for our family.", name:"Rajesh Mehta", place:"Pune"},
-    {text:"Every meditation session leaves me calmer and more centered. Deeply grateful for this guidance.", name:"Priya Shah", place:"Ahmedabad"},
-    {text:"A place where tradition and warmth meet. The seva activities changed my perspective on service.", name:"Vikram Sethi", place:"Jaipur"}
+    {icon:"✨", cap:"Mangal Pravesh"}
   ]
 };
