@@ -57,7 +57,7 @@ a{color:inherit;text-decoration:none}
 .brand-logo{width:50px;height:50px;filter:drop-shadow(0 4px 8px rgba(184,134,11,.4))}
 .brand-text{display:flex;flex-direction:column;line-height:1.05;color:var(--ink)}
 .site-header:not(.scrolled) .brand-text{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-.brand-text strong{font-size:1.18rem;font-weight:700}
+.brand-text strong{font-size:1.12rem;font-weight:700;max-width:240px;line-height:1.1}
 .brand-text em{font-style:normal;font-size:.74rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
 .site-header:not(.scrolled) .brand-text em{color:var(--gold-light)}
 .main-nav{display:flex;gap:1.6rem;align-items:center}
