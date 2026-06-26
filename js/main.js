@@ -68,7 +68,7 @@
           <div class="event-meta">📅 ${e.dateText || e.time || ""} &nbsp;•&nbsp; 📍 ${e.location}</div>
           <p>${e.desc}</p>
           <div class="event-actions">
-            <a class="btn btn-primary btn-small" href="${maps}" target="_blank" rel="noopener">Register</a>
+            <button class="btn btn-primary btn-small reg-btn" data-event="${e.title}" data-date="${e.dateText || ''}" data-loc="${e.location}">Register</button>
             <a class="btn btn-ghost btn-small" href="${maps}" target="_blank" rel="noopener">View Map</a>
           </div>
         </div>
@@ -167,6 +167,50 @@
     $("#formNote").hidden = false;
     setTimeout(() => { $("#formNote").hidden = true; }, 5000);
   });
+
+  /* ---- registration modal ---- */
+  const regModal = $("#regModal");
+  const regForm = $("#regForm");
+  const waNumber = (S.whatsapp || "").replace(/[^0-9]/g, "") || "919423028177";
+  const openReg = (title, date, loc) => {
+    $("#regEventName").textContent = title + (date ? " · " + date : "") + (loc ? " · " + loc : "");
+    regForm.elements.event.value = title;
+    $("#regNote").hidden = true;
+    regModal.classList.add("open");
+    regModal.setAttribute("aria-hidden", "false");
+  };
+  const closeReg = () => { regModal.classList.remove("open"); regModal.setAttribute("aria-hidden", "true"); };
+  document.addEventListener("click", (ev) => {
+    const b = ev.target.closest(".reg-btn");
+    if (b) { openReg(b.dataset.event, b.dataset.date, b.dataset.loc); }
+    if (ev.target.hasAttribute("data-close")) closeReg();
+  });
+  // build the WhatsApp prefilled message live
+  const buildWa = () => {
+    const f = regForm;
+    const msg = `🙏 Registration — ${f.elements.event.value}\nName: ${f.name.value}\nPhone: ${f.phone.value}\nCity: ${f.city.value}\nEmail: ${f.email.value}\nPeople: ${f.count.value}\nParticipation: ${f.mode.value}\nMessage: ${f.message.value}`;
+    $("#regWhats").href = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(msg);
+  };
+  regForm.addEventListener("input", buildWa);
+  regForm.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const regs = get("registrations", []);
+    const f = regForm;
+    regs.push({ event: f.event.value, name: f.name.value, phone: f.phone.value, city: f.city.value, email: f.email.value, count: f.count.value, mode: f.mode.value, message: f.message.value, at: new Date().toISOString() });
+    localStorage.setItem("GPPC_registrations", JSON.stringify(regs));
+    buildWa();
+    $("#regNote").hidden = false;
+    setTimeout(closeReg, 2200);
+  });
+
+  /* ---- image lightbox ---- */
+  const lb = $("#lightbox"), lbImg = $("#lightboxImg");
+  document.addEventListener("click", (ev) => {
+    const img = ev.target.closest(".guru-photo img");
+    if (img) { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open"); lb.setAttribute("aria-hidden", "false"); }
+    if (ev.target.hasAttribute("data-lbclose") || ev.target === lb) { lb.classList.remove("open"); }
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeReg(); lb.classList.remove("open"); } });
 
   /* ---- year ---- */
   $("#year").textContent = new Date().getFullYear();

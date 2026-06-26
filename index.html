@@ -175,6 +175,47 @@
   </div>
 </footer>
 
+<!-- ============ REGISTRATION MODAL ============ -->
+<div class="modal" id="regModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="regTitle">
+    <button class="modal-close" data-close aria-label="Close">×</button>
+    <h3 id="regTitle">Register for the Event</h3>
+    <p class="modal-event" id="regEventName"></p>
+    <form id="regForm">
+      <label>Full Name *<input type="text" name="name" required /></label>
+      <div class="modal-row">
+        <label>Phone / WhatsApp *<input type="tel" name="phone" required pattern="[0-9+ ]{7,15}" /></label>
+        <label>City *<input type="text" name="city" required /></label>
+      </div>
+      <div class="modal-row">
+        <label>Email<input type="email" name="email" /></label>
+        <label>Number of People *<input type="number" name="count" min="1" value="1" required /></label>
+      </div>
+      <label>Participation
+        <select name="mode">
+          <option>Attending in person</option>
+          <option>Need accommodation / seva</option>
+          <option>Joining online</option>
+        </select>
+      </label>
+      <label>Message / Special request<textarea name="message" rows="2"></textarea></label>
+      <input type="hidden" name="event" />
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary">Confirm Registration</button>
+        <a class="btn btn-ghost wa-btn" id="regWhats" style="background:transparent;color:#25D366;border-color:#25D366" target="_blank" rel="noopener">Send via WhatsApp</a>
+      </div>
+      <p class="form-note" id="regNote" hidden>🙏 Thank you! Your registration has been received.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ============ IMAGE LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="modal-close" data-lbclose aria-label="Close">×</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
 </body>

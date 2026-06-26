@@ -57,6 +57,7 @@
     <button data-tab="quotes">Daily Quotes</button>
     <button data-tab="gallery">Gallery</button>
     <button data-tab="social">Social Links</button>
+    <button data-tab="registrations">Registrations</button>
     <button data-tab="inquiries">Inquiries</button>
   </div>
 
@@ -66,6 +67,7 @@
   <div class="panel" id="panel-quotes"></div>
   <div class="panel" id="panel-gallery"></div>
   <div class="panel" id="panel-social"></div>
+  <div class="panel" id="panel-registrations"></div>
   <div class="panel" id="panel-inquiries"></div>
 
   <div class="save-bar">
@@ -109,6 +111,14 @@ function field(coll, idx, key, lbl, t){
 
 function render(coll){
   const p = document.getElementById("panel-"+coll);
+  if(coll==="registrations"){
+    const regs = load("registrations", []);
+    p.innerHTML = `<h2>Event Registrations (${regs.length})</h2>` +
+      (regs.length? regs.slice().reverse().map(m=>`<div class="card inq"><b>${m.name}</b> — ${m.phone} ${m.email||""}<br>Event: <b>${m.event}</b><br>City: ${m.city||""} · People: ${m.count||1} · ${m.mode||""}<br>${m.message||""}<br><small>${new Date(m.at).toLocaleString()}</small></div>`).join("")
+       : `<p class="hint">No registrations yet.</p>`) +
+      (regs.length?`<button class="btn btn-del" onclick="localStorage.removeItem('GPPC_registrations');render('registrations')">Clear registrations</button>`:"");
+    return;
+  }
   if(coll==="inquiries"){
     const inq = load("inquiries", []);
     p.innerHTML = `<h2>Contact Inquiries (${inq.length})</h2>` +
