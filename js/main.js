@@ -11,7 +11,8 @@
     teachings: get("teachings", D.teachings),
     quotes: get("quotes", D.quotes),
     gallery: get("gallery", D.gallery),
-    social: get("social", D.social)
+    social: get("social", D.social),
+    books: get("books", D.books || [])
   };
 
   const $ = (s) => document.querySelector(s);
@@ -102,6 +103,48 @@
   });
   renderTeachings("All");
 
+  /* ---- books ---- */
+  const driveId = (url) => {
+    if (!url) return "";
+    const m = url.match(/\/d\/([A-Za-z0-9_-]+)/) || url.match(/[?&]id=([A-Za-z0-9_-]+)/);
+    return m ? m[1] : "";
+  };
+  const bg = $("#bookGrid");
+  if (bg) {
+    (data.books || []).forEach(b => {
+      const id = driveId(b.drive);
+      let actions = "";
+      if (id) {
+        const preview = "https://drive.google.com/file/d/" + id + "/preview";
+        const download = "https://drive.google.com/uc?export=download&id=" + id;
+        actions = `<div class="book-actions">
+            <button class="btn btn-primary btn-small book-read" data-src="${preview}">📖 Read Online</button>
+            <a class="btn btn-ghost btn-small" style="background:transparent;color:var(--saffron-deep);border-color:var(--saffron)" href="${download}" target="_blank" rel="noopener">⬇ Download</a>
+          </div>`;
+      } else if (b.drive) {
+        actions = `<div class="book-actions"><a class="btn btn-primary btn-small" href="${b.drive}" target="_blank" rel="noopener">📖 Open Book</a></div>`;
+      } else {
+        actions = `<p class="book-soon">📚 Coming soon — the book will be available here shortly.</p>`;
+      }
+      bg.appendChild(el(`
+        <article class="book-card reveal">
+          <div class="book-cover">${b.cover ? `<img src="${b.cover}" alt="${b.title}">` : "📖"}</div>
+          <div class="book-info">
+            <h3>${b.title}</h3>
+            <div class="author">${b.author || ""}</div>
+            <p>${b.desc || ""}</p>
+            ${actions}
+          </div>
+        </article>`));
+    });
+  }
+  // book reader modal
+  const bookModal = $("#bookModal"), bookFrame = $("#bookFrame");
+  document.addEventListener("click", (ev) => {
+    const rb = ev.target.closest(".book-read");
+    if (rb) { bookFrame.src = rb.dataset.src; bookModal.classList.add("open"); bookModal.setAttribute("aria-hidden", "false"); }
+  });
+
   /* ---- daily wisdom (deterministic per day) ---- */
   const q = data.quotes.length ? data.quotes : D.quotes;
   const dayIndex = Math.floor(Date.now() / 86400000) % q.length;
@@ -183,7 +226,11 @@
   document.addEventListener("click", (ev) => {
     const b = ev.target.closest(".reg-btn");
     if (b) { openReg(b.dataset.event, b.dataset.date, b.dataset.loc); }
-    if (ev.target.hasAttribute("data-close")) closeReg();
+    if (ev.target.hasAttribute("data-close")) {
+      closeReg();
+      const bm = $("#bookModal");
+      if (bm) { bm.classList.remove("open"); bm.setAttribute("aria-hidden", "true"); const bf = $("#bookFrame"); if (bf) bf.src = ""; }
+    }
   });
   // build the WhatsApp prefilled message live
   const buildWa = () => {
@@ -210,7 +257,12 @@
     if (img) { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open"); lb.setAttribute("aria-hidden", "false"); }
     if (ev.target.hasAttribute("data-lbclose") || ev.target === lb) { lb.classList.remove("open"); }
   });
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeReg(); lb.classList.remove("open"); } });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeReg(); lb.classList.remove("open");
+      if (bookModal) { bookModal.classList.remove("open"); bookFrame.src = ""; }
+    }
+  });
 
   /* ---- year ---- */
   $("#year").textContent = new Date().getFullYear();

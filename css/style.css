@@ -149,6 +149,25 @@ a{color:inherit;text-decoration:none}
 .teaching-card p{font-size:.9rem;color:var(--ink-soft);margin-top:.4rem}
 .teaching-card a.read{display:inline-block;margin-top:.8rem;color:var(--saffron-deep);font-size:.85rem;font-weight:500}
 
+/* books */
+.book-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem}
+.book-card{display:flex;gap:1.3rem;background:var(--ivory);border:1px solid var(--cream-deep);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.3rem;transition:.4s}
+.book-card:hover{transform:translateY(-6px)}
+.book-cover{flex:0 0 120px;width:120px;height:170px;border-radius:10px;overflow:hidden;background:linear-gradient(140deg,var(--maroon),var(--saffron));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:2.4rem;box-shadow:0 10px 24px -12px rgba(110,31,18,.6)}
+.book-cover img{width:100%;height:100%;object-fit:cover}
+.book-info{display:flex;flex-direction:column}
+.book-info h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--maroon);line-height:1.15}
+.book-info .author{color:var(--saffron-deep);font-size:.85rem;margin:.2rem 0 .6rem}
+.book-info p{font-size:.88rem;color:var(--ink-soft);flex:1}
+.book-actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}
+.book-soon{font-size:.85rem;color:var(--ink-soft);font-style:italic;margin-top:.9rem}
+
+/* book reader modal */
+.book-modal .book-reader{position:relative;width:min(900px,100%);height:88vh;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.book-modal .modal-close{z-index:2;background:rgba(0,0,0,.5);color:#fff;border-radius:50%;width:38px;height:38px}
+.book-reader iframe{width:100%;height:100%;border:0}
+
 /* daily wisdom */
 .daily-wisdom{text-align:center;background:
   linear-gradient(180deg,rgba(110,31,18,.92),rgba(60,18,8,.95)),

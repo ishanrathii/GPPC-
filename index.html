@@ -53,6 +53,7 @@
       <a href="#about">About</a>
       <a href="#schedule">Schedule</a>
       <a href="#teachings">Teachings</a>
+      <a href="#books">Books</a>
       <a href="#wisdom">Daily Wisdom</a>
       <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
@@ -114,6 +115,18 @@
     </div>
     <div class="topic-chips" id="topicChips"></div>
     <div class="teaching-grid" id="teachingGrid"><!-- injected by JS --></div>
+  </div>
+</section>
+
+<!-- ============ BOOKS ============ -->
+<section class="section" id="books">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="kicker">Books &amp; Publications</span>
+      <h2>Sacred Literature</h2>
+      <p class="lead">Spiritual books and writings by our revered guides — read online or download to nourish your journey.</p>
+    </div>
+    <div class="book-grid" id="bookGrid"><!-- injected by JS --></div>
   </div>
 </section>
 
@@ -207,6 +220,15 @@
       </div>
       <p class="form-note" id="regNote" hidden>🙏 Thank you! Your registration has been received.</p>
     </form>
+  </div>
+</div>
+
+<!-- ============ BOOK READER MODAL ============ -->
+<div class="modal book-modal" id="bookModal" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <div class="book-reader" role="dialog" aria-modal="true">
+    <button class="modal-close" data-close aria-label="Close">×</button>
+    <iframe id="bookFrame" src="" title="Book reader" allow="autoplay"></iframe>
   </div>
 </div>
 

@@ -75,6 +75,16 @@ window.GPPC_DEFAULTS = {
     {title:"Chaturmas Grand Mangal Pravesh",     date:"2026-07-26", dateText:"26 July 2026",            location:"Mahavir Bhavan, Chhatrapati Sambhajinagar", maps:"Mahavir+Bhavan+Chhatrapati+Sambhajinagar", desc:"Grand ceremonial Chaturmasik Mangal Pravesh."}
   ],
 
+  books: [
+    {
+      title: "Sacred Teachings",
+      author: "By Gurunisa Prabha Prakash Chaitanya",
+      cover: "",
+      drive: "",
+      desc: "A collection of enlightening discourses and spiritual wisdom — a guide to right faith, right knowledge and right conduct for every seeker."
+    }
+  ],
+
   teachings: [
     {title:"Finding God Within", topic:"God", type:"Article", icon:"🪔", excerpt:"The divine is not distant — it dwells in the awakened heart. A reflection on inner realization."},
     {title:"The Meaning of a Purposeful Life", topic:"Life", type:"Article", icon:"🌿", excerpt:"How to align daily choices with deeper purpose and lasting contentment."},

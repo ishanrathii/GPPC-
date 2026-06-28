@@ -56,6 +56,7 @@
     <button data-tab="teachings">Teachings</button>
     <button data-tab="quotes">Daily Quotes</button>
     <button data-tab="gallery">Gallery</button>
+    <button data-tab="books">Books</button>
     <button data-tab="social">Social Links</button>
     <button data-tab="registrations">Registrations</button>
     <button data-tab="inquiries">Inquiries</button>
@@ -66,6 +67,7 @@
   <div class="panel" id="panel-teachings"></div>
   <div class="panel" id="panel-quotes"></div>
   <div class="panel" id="panel-gallery"></div>
+  <div class="panel" id="panel-books"></div>
   <div class="panel" id="panel-social"></div>
   <div class="panel" id="panel-registrations"></div>
   <div class="panel" id="panel-inquiries"></div>
@@ -90,6 +92,7 @@ const state = {
   teachings: load("teachings", D.teachings),
   quotes: load("quotes", D.quotes),
   gallery: load("gallery", D.gallery),
+  books: load("books", D.books || []),
   social: load("social", D.social)
 };
 
@@ -99,7 +102,8 @@ const schema = {
   events: [["title","Title / Place"],["date","Date","date"],["dateText","Date Label (e.g. 27–29 June 2026)"],["location","Location"],["maps","Maps Query"],["desc","Description","area"]],
   teachings: [["title","Title"],["topic","Topic"],["type","Type (Article/Video)"],["icon","Icon Emoji"],["excerpt","Excerpt","area"],["link","Link URL"],["image","Image URL"]],
   quotes: [["text","Quote","area"],["author","Author"]],
-  gallery: [["cap","Caption"],["icon","Icon Emoji"],["image","Image URL"],["tall","Tall (true/false)"],["video","Is Video (true/false)"]]
+  gallery: [["cap","Caption"],["icon","Icon Emoji"],["image","Image URL"],["tall","Tall (true/false)"],["video","Is Video (true/false)"]],
+  books: [["title","Book Title"],["author","Author"],["cover","Cover Image URL"],["drive","Google Drive Share Link"],["desc","Description","area"]]
 };
 const socialSchema = [["youtube","YouTube URL"],["instagram","Instagram URL"],["whatsapp","WhatsApp URL"],["facebook","Facebook URL"],["email","Email"]];
 
@@ -133,7 +137,7 @@ function render(coll){
       `</div></div>`;
     return;
   }
-  const titles={gurus:"Spiritual Guides",events:"Events (Chaturmas Schedule)",teachings:"Teachings & Wisdom",quotes:"Daily Quotes",gallery:"Gallery Items"};
+  const titles={gurus:"Spiritual Guides",events:"Events (Chaturmas Schedule)",teachings:"Teachings & Wisdom",quotes:"Daily Quotes",gallery:"Gallery Items",books:"Books & Publications"};
   let html = `<h2>${titles[coll]}</h2>`;
   state[coll].forEach((_,i)=>{
     html += `<div class="card"><div class="row">`+
@@ -184,7 +188,7 @@ document.getElementById("exportBtn").addEventListener("click",()=>{
 
 document.getElementById("resetAll").addEventListener("click",()=>{
   if(confirm("Reset all content to defaults? This clears your saved changes.")){
-    ["gurus","events","teachings","quotes","gallery","social"].forEach(k=>localStorage.removeItem("GPPC_"+k));
+    ["gurus","events","teachings","quotes","gallery","books","social"].forEach(k=>localStorage.removeItem("GPPC_"+k));
     location.reload();
   }
 });
