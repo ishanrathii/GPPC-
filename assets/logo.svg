@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Gurunisa Prabha Prakash Chaitanya — Utkarsh Chaturmas emblem">
+  <defs>
+    <radialGradient id="coin" cx="50%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#fff8e2"/>
+      <stop offset="50%" stop-color="#f4d488"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e9b94c"/>
+      <stop offset="50%" stop-color="#fff2c9"/>
+      <stop offset="100%" stop-color="#a9760a"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff3cf"/>
+      <stop offset="100%" stop-color="#e7a93a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- coin -->
+  <circle cx="100" cy="100" r="96" fill="url(#coin)"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#rim)" stroke-width="7"/>
+  <circle cx="100" cy="100" r="83" fill="none" stroke="#b8860b" stroke-width="1.4" opacity="0.55"/>
+
+  <!-- radiant sunburst halo behind figure -->
+  <g transform="translate(100,78)">
+    <g stroke="#d99c25" stroke-width="2.2" opacity="0.7">
+      <line x1="0" y1="-46" x2="0" y2="-30"/>
+      <line x1="12" y1="-44" x2="8" y2="-29"/>
+      <line x1="-12" y1="-44" x2="-8" y2="-29"/>
+      <line x1="24" y1="-39" x2="16" y2="-26"/>
+      <line x1="-24" y1="-39" x2="-16" y2="-26"/>
+      <line x1="34" y1="-31" x2="23" y2="-21"/>
+      <line x1="-34" y1="-31" x2="-23" y2="-21"/>
+      <line x1="42" y1="-20" x2="28" y2="-13"/>
+      <line x1="-42" y1="-20" x2="-28" y2="-13"/>
+    </g>
+    <circle cx="0" cy="-8" r="34" fill="url(#halo)"/>
+  </g>
+
+  <!-- seated meditating figure -->
+  <g fill="#5e3f0f">
+    <circle cx="100" cy="70" r="11"/>
+    <path d="M100 82 C83 82 72 97 72 114 C72 121 80 123 87 120 L87 115 C87 105 92 98 100 98 C108 98 113 105 113 115 L113 120 C120 123 128 121 128 114 C128 97 117 82 100 82 Z"/>
+    <!-- folded legs -->
+    <path d="M68 116 Q100 134 132 116 Q134 127 100 131 Q66 127 68 116 Z"/>
+    <!-- hands resting in lap -->
+    <ellipse cx="100" cy="118" rx="9" ry="4" fill="#6e4a12"/>
+  </g>
+
+  <!-- lotus seat -->
+  <g fill="#e3a93c">
+    <path d="M100 150 C90 137 78 137 73 150 C83 158 95 158 100 150 Z"/>
+    <path d="M100 150 C110 137 122 137 127 150 C117 158 105 158 100 150 Z"/>
+    <path d="M100 154 C92 142 82 142 77 154 C87 162 97 162 100 154 Z" opacity="0.9"/>
+    <path d="M100 154 C108 142 118 142 123 154 C113 162 103 162 100 154 Z" opacity="0.9"/>
+    <path d="M100 146 C95 153 95 160 100 162 C105 160 105 153 100 146 Z"/>
+  </g>
+</svg>

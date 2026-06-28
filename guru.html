@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spiritual Guide — Gurunisa Prabha Prakash Chaitanya</title>
+<meta name="description" content="Profile, teachings and spiritual journey of our revered guides." />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Marcellus&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .guru-hero{padding:7.5rem 0 3rem;background:
+    linear-gradient(180deg,rgba(110,31,18,.92),rgba(60,18,8,.95)),
+    radial-gradient(circle at 50% 0%, rgba(233,196,106,.4),transparent 60%);color:#fff;text-align:center}
+  .gp-photo{width:170px;height:170px;border-radius:50%;margin:0 auto 1.4rem;overflow:hidden;border:4px solid var(--gold-light);
+    box-shadow:0 18px 40px -16px rgba(0,0,0,.6);background:linear-gradient(135deg,var(--gold-light),var(--saffron));
+    display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:700;color:#fff}
+  .gp-photo img{width:100%;height:100%;object-fit:cover}
+  .gp-photo{cursor:zoom-in}
+  .lightbox{position:fixed;inset:0;z-index:210;display:none;align-items:center;justify-content:center;background:rgba(20,8,4,.92);padding:2rem}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:92vw;max-height:88vh;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);border:3px solid var(--gold-light)}
+  .lb-close{position:absolute;top:1rem;right:1.4rem;border:none;background:none;color:#fff;font-size:2.4rem;cursor:pointer}
+  .guru-hero h1{font-size:clamp(2rem,4.5vw,3.2rem);color:#fff}
+  .guru-hero .role{font-family:'Marcellus',serif;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);font-size:.85rem;margin-top:.5rem}
+  .gp-quote{max-width:680px;margin:1.4rem auto 0;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--gold-light)}
+  .gp-body{max-width:760px;margin:0 auto;padding:3rem 0}
+  .gp-body h2{font-family:'Cormorant Garamond',serif;color:var(--maroon);font-size:1.9rem;margin:1.8rem 0 .6rem}
+  .gp-body p{color:var(--ink-soft);margin-bottom:1rem;font-weight:300;line-height:1.8}
+  .gp-back{display:inline-block;margin-top:1rem;color:var(--saffron-deep);font-weight:500}
+  .gp-cta{margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="bg-rays" aria-hidden="true"></div>
+<div class="bg-lotus" aria-hidden="true"></div>
+
+<header class="site-header scrolled" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="logo" class="brand-logo" />
+      <span class="brand-text"><strong>Gurunisa Prabha Prakash Chaitanya</strong><em>Utkarsh Chaturmas</em></span>
+    </a>
+    <nav class="main-nav" id="nav">
+      <a href="index.html#about">About</a>
+      <a href="index.html#schedule">Schedule</a>
+      <a href="index.html#teachings">Teachings</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="guru-hero">
+  <div class="container">
+    <div class="gp-photo" id="gpPhoto">G</div>
+    <h1 id="gpName">Spiritual Guide</h1>
+    <div class="role" id="gpRole"></div>
+    <p class="gp-quote" id="gpQuote"></p>
+  </div>
+</section>
+
+<section class="container gp-body">
+  <a class="gp-back" href="index.html#about">← Back to all guides</a>
+  <h2>About</h2>
+  <p id="gpBio"></p>
+  <h2>Spiritual Journey</h2>
+  <p id="gpJourney"></p>
+  <div class="gp-cta">
+    <a class="btn btn-primary" href="index.html#schedule">View Schedule</a>
+    <a class="btn btn-ghost" style="background:transparent;color:var(--saffron-deep);border-color:var(--saffron)" href="index.html#contact">Contact Us</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© <span id="year"></span> Gurunisa Prabha Prakash Chaitanya. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
+
+<script src="js/data.js"></script>
+<script>
+(function(){
+  const D = window.GPPC_DEFAULTS;
+  let gurus = D.gurus;
+  try { const v = localStorage.getItem("GPPC_gurus"); if (v) gurus = JSON.parse(v); } catch(e){}
+  const id = parseInt(new URLSearchParams(location.search).get("id"), 10) || 0;
+  const g = gurus[id] || gurus[0];
+  document.title = g.name + " — Gurunisa Prabha Prakash Chaitanya";
+  const photo = document.getElementById("gpPhoto");
+  if (g.photo) photo.innerHTML = '<img src="'+g.photo+'" alt="'+g.name+'" onerror="this.parentNode.textContent=\''+(g.initial || g.name[0])+'\'">';
+  else photo.textContent = g.initial || g.name[0];
+  document.getElementById("gpName").textContent = g.name;
+  document.getElementById("gpRole").textContent = g.role || "";
+  document.getElementById("gpQuote").textContent = g.teaching || "";
+  document.getElementById("gpBio").textContent = g.bio || "";
+  document.getElementById("gpJourney").textContent = g.journey || "Biography and spiritual journey will be added soon.";
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // click photo to enlarge
+  const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lightboxImg");
+  photo.addEventListener("click", function(){
+    const im = photo.querySelector("img");
+    if (!im) return;
+    lbImg.src = im.src; lbImg.alt = im.alt;
+    lb.classList.add("open");
+  });
+  const closeLb = () => lb.classList.remove("open");
+  document.getElementById("lbClose").addEventListener("click", closeLb);
+  lb.addEventListener("click", function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeLb(); });
+})();
+</script>
+</body>
+</html>

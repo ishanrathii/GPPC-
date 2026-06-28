@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard — Gurunisa Prabha Prakash Chaitanya</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{--saffron:#e8821e;--gold:#b8860b;--maroon:#6e1f12;--ink:#3a2c14;--cream:#f7eeda;--ivory:#fffdf7}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--ink)}
+  header{background:linear-gradient(135deg,var(--maroon),var(--saffron));color:#fff;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  header .t{display:flex;align-items:center;gap:.8rem}
+  header img{width:42px}
+  header h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem}
+  header a,header button{color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.5);padding:.45rem 1rem;border-radius:30px;cursor:pointer;font-size:.85rem;text-decoration:none}
+  .wrap{max-width:1000px;margin:1.5rem auto;padding:0 1rem}
+  .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+  .tabs button{padding:.55rem 1.1rem;border:1px solid var(--gold);background:transparent;border-radius:30px;cursor:pointer;font-family:'Poppins';font-size:.85rem}
+  .tabs button.active{background:var(--saffron);color:#fff;border-color:var(--saffron)}
+  .panel{display:none}
+  .panel.active{display:block}
+  .card{background:var(--ivory);border:1px solid #e6d8b8;border-radius:14px;padding:1.2rem;margin-bottom:1rem;box-shadow:0 8px 24px -16px rgba(110,31,18,.4)}
+  .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem}
+  label{font-size:.78rem;color:#6b5a3c;font-weight:500;display:block}
+  input,textarea,select{width:100%;margin-top:.25rem;padding:.55rem .7rem;border:1px solid #e0d0aa;border-radius:8px;font-family:'Poppins';font-size:.88rem;background:#fff}
+  textarea{min-height:64px;resize:vertical}
+  .btn{padding:.55rem 1.1rem;border:none;border-radius:30px;cursor:pointer;font-size:.85rem;font-family:'Poppins'}
+  .btn-add{background:var(--saffron);color:#fff;margin-top:.4rem}
+  .btn-del{background:#fff;color:var(--maroon);border:1px solid var(--maroon);margin-top:.6rem;padding:.35rem .9rem}
+  .btn-save{background:var(--maroon);color:#fff}
+  .save-bar{position:sticky;bottom:0;background:rgba(247,238,218,.95);backdrop-filter:blur(6px);padding:1rem;border-top:1px solid #e0d0aa;display:flex;justify-content:space-between;align-items:center;margin-top:1rem;border-radius:12px}
+  .save-bar small{color:#6b5a3c}
+  h2{font-family:'Cormorant Garamond',serif;color:var(--maroon);margin-bottom:.8rem}
+  .hint{font-size:.8rem;color:#6b5a3c;margin-bottom:1rem}
+  .inq{font-size:.85rem;border-bottom:1px dashed #e0d0aa;padding:.6rem 0}
+</style>
+</head>
+<body>
+<header>
+  <div class="t"><img src="assets/logo.png" onerror="this.onerror=null;this.src='assets/logo.svg'" alt="logo"><h1>Admin Dashboard</h1></div>
+  <div style="display:flex;gap:.5rem">
+    <a href="index.html" target="_blank">View Site ↗</a>
+    <button id="resetAll">Reset to defaults</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="hint">Edit content below and click <b>Save</b>. Changes are stored in this browser (localStorage) and appear instantly on the site. Use “Export JSON” to back up your content. For images, paste an image URL.</p>
+
+  <div class="tabs">
+    <button data-tab="gurus" class="active">Gurus</button>
+    <button data-tab="events">Events</button>
+    <button data-tab="teachings">Teachings</button>
+    <button data-tab="quotes">Daily Quotes</button>
+    <button data-tab="gallery">Gallery</button>
+    <button data-tab="books">Books</button>
+    <button data-tab="social">Social Links</button>
+    <button data-tab="registrations">Registrations</button>
+    <button data-tab="inquiries">Inquiries</button>
+  </div>
+
+  <div class="panel active" id="panel-gurus"></div>
+  <div class="panel" id="panel-events"></div>
+  <div class="panel" id="panel-teachings"></div>
+  <div class="panel" id="panel-quotes"></div>
+  <div class="panel" id="panel-gallery"></div>
+  <div class="panel" id="panel-books"></div>
+  <div class="panel" id="panel-social"></div>
+  <div class="panel" id="panel-registrations"></div>
+  <div class="panel" id="panel-inquiries"></div>
+
+  <div class="save-bar">
+    <small id="status">Ready.</small>
+    <div style="display:flex;gap:.5rem">
+      <button class="btn" id="exportBtn">Export JSON</button>
+      <button class="btn btn-save" id="saveBtn">💾 Save all changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script>
+const D = window.GPPC_DEFAULTS;
+const load = (k, f) => { try{ const v=localStorage.getItem("GPPC_"+k); return v?JSON.parse(v):JSON.parse(JSON.stringify(f)); }catch(e){ return JSON.parse(JSON.stringify(f)); } };
+
+const state = {
+  gurus: load("gurus", D.gurus),
+  events: load("events", D.events),
+  teachings: load("teachings", D.teachings),
+  quotes: load("quotes", D.quotes),
+  gallery: load("gallery", D.gallery),
+  books: load("books", D.books || []),
+  social: load("social", D.social)
+};
+
+// field schema for each collection
+const schema = {
+  gurus: [["name","Name"],["role","Role"],["initial","Initial"],["photo","Photo URL"],["bio","Short Biography","area"],["teaching","Teaching Quote"],["journey","Spiritual Journey (detail page)","area"]],
+  events: [["title","Title / Place"],["date","Date","date"],["dateText","Date Label (e.g. 27–29 June 2026)"],["location","Location"],["maps","Maps Query"],["desc","Description","area"]],
+  teachings: [["title","Title"],["topic","Topic"],["type","Type (Article/Video)"],["icon","Icon Emoji"],["excerpt","Excerpt","area"],["link","Link URL"],["image","Image URL"]],
+  quotes: [["text","Quote","area"],["author","Author"]],
+  gallery: [["cap","Caption"],["icon","Icon Emoji"],["image","Image URL"],["tall","Tall (true/false)"],["video","Is Video (true/false)"]],
+  books: [["title","Book Title"],["author","Author"],["cover","Cover Image URL"],["drive","Google Drive Share Link"],["desc","Description","area"]]
+};
+const socialSchema = [["youtube","YouTube URL"],["instagram","Instagram URL"],["whatsapp","WhatsApp URL"],["facebook","Facebook URL"],["email","Email"]];
+
+function field(coll, idx, key, lbl, t){
+  const val = state[coll][idx][key] ?? "";
+  if(t==="area") return `<label>${lbl}<textarea data-c="${coll}" data-i="${idx}" data-k="${key}">${val}</textarea></label>`;
+  return `<label>${lbl}<input type="${t==="date"?"date":"text"}" data-c="${coll}" data-i="${idx}" data-k="${key}" value="${String(val).replace(/"/g,'&quot;')}"></label>`;
+}
+
+function render(coll){
+  const p = document.getElementById("panel-"+coll);
+  if(coll==="registrations"){
+    const regs = load("registrations", []);
+    p.innerHTML = `<h2>Event Registrations (${regs.length})</h2>` +
+      (regs.length? regs.slice().reverse().map(m=>`<div class="card inq"><b>${m.name}</b> — ${m.phone} ${m.email||""}<br>Event: <b>${m.event}</b><br>City: ${m.city||""} · People: ${m.count||1} · ${m.mode||""}<br>${m.message||""}<br><small>${new Date(m.at).toLocaleString()}</small></div>`).join("")
+       : `<p class="hint">No registrations yet.</p>`) +
+      (regs.length?`<button class="btn btn-del" onclick="localStorage.removeItem('GPPC_registrations');render('registrations')">Clear registrations</button>`:"");
+    return;
+  }
+  if(coll==="inquiries"){
+    const inq = load("inquiries", []);
+    p.innerHTML = `<h2>Contact Inquiries (${inq.length})</h2>` +
+      (inq.length? inq.slice().reverse().map(m=>`<div class="card inq"><b>${m.name}</b> — ${m.email} ${m.phone||""}<br>${m.message}<br><small>${new Date(m.at).toLocaleString()}</small></div>`).join("")
+       : `<p class="hint">No inquiries yet.</p>`) +
+      (inq.length?`<button class="btn btn-del" onclick="localStorage.removeItem('GPPC_inquiries');render('inquiries')">Clear inquiries</button>`:"");
+    return;
+  }
+  if(coll==="social"){
+    p.innerHTML = `<h2>Social & Contact Links</h2><div class="card"><div class="row">`+
+      socialSchema.map(f=>`<label>${f[1]}<input type="text" data-social="${f[0]}" value="${String(state.social[f[0]]??'').replace(/"/g,'&quot;')}"></label>`).join("")+
+      `</div></div>`;
+    return;
+  }
+  const titles={gurus:"Spiritual Guides",events:"Events (Chaturmas Schedule)",teachings:"Teachings & Wisdom",quotes:"Daily Quotes",gallery:"Gallery Items",books:"Books & Publications"};
+  let html = `<h2>${titles[coll]}</h2>`;
+  state[coll].forEach((_,i)=>{
+    html += `<div class="card"><div class="row">`+
+      schema[coll].map(f=>field(coll,i,f[0],f[1],f[2])).join("")+
+      `</div><button class="btn btn-del" data-del="${coll}" data-idx="${i}">Delete</button></div>`;
+  });
+  html += `<button class="btn btn-add" data-add="${coll}">+ Add new</button>`;
+  p.innerHTML = html;
+}
+
+// tabs
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  document.getElementById("panel-"+b.dataset.tab).classList.add("active");
+  render(b.dataset.tab);
+}));
+
+// input binding
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset.social!==undefined){ state.social[t.dataset.social]=t.value; return; }
+  if(!t.dataset.c) return;
+  let v=t.value;
+  if(v==="true")v=true; else if(v==="false")v=false;
+  state[t.dataset.c][t.dataset.i][t.dataset.k]=v;
+});
+
+// add / delete
+document.addEventListener("click",e=>{
+  const a=e.target.dataset.add, d=e.target.dataset.del;
+  if(a){ const blank={}; schema[a].forEach(f=>blank[f[0]]=""); state[a].push(blank); render(a); status("Added — remember to Save."); }
+  if(d!==undefined && d!==""){ state[d].splice(+e.target.dataset.idx,1); render(d); status("Deleted — remember to Save."); }
+});
+
+function status(m){ document.getElementById("status").textContent=m; }
+
+document.getElementById("saveBtn").addEventListener("click",()=>{
+  Object.keys(state).forEach(k=>localStorage.setItem("GPPC_"+k,JSON.stringify(state[k])));
+  status("✅ Saved at "+new Date().toLocaleTimeString());
+});
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="gppc-content.json";a.click();
+});
+
+document.getElementById("resetAll").addEventListener("click",()=>{
+  if(confirm("Reset all content to defaults? This clears your saved changes.")){
+    ["gurus","events","teachings","quotes","gallery","books","social"].forEach(k=>localStorage.removeItem("GPPC_"+k));
+    location.reload();
+  }
+});
+
+render("gurus");
+</script>
+</body>
+</html>
